@@ -1,0 +1,26 @@
+:root{--navy:#2C3B4C;--gray:#878B8D;--hint:#5B6469;--line:#DDE1E4;--bg:#EEF0F1;--card:#FFF;--err:#B3412F;--ok:#2F6B4F}
+*{box-sizing:border-box}html,body{margin:0}
+body{font-family:'Barlow',Arial,sans-serif;background:var(--bg);color:var(--navy);font-size:17px;line-height:1.5}
+.hero{background:var(--navy);color:#fff;padding:28px 16px 64px;text-align:center}
+.hero img{width:150px;max-width:50%;height:auto}
+.wrap{max-width:560px;margin:-44px auto 40px;padding:0 16px}
+.card{background:var(--card);border-radius:12px;padding:28px 24px;box-shadow:0 6px 24px rgba(44,59,76,.10)}
+h1{font-size:26px;line-height:1.2;margin:0 0 10px;font-weight:600}
+p.lead{color:var(--hint);margin:0 0 22px}
+label.f{display:block;font-weight:600;margin:16px 0 6px;font-size:15px}
+input[type=text],input[type=email],select{width:100%;font:inherit;padding:12px 14px;border:1.5px solid var(--line);border-radius:8px;background:#fff;color:var(--navy)}
+input:focus,select:focus{outline:none;border-color:var(--navy)}
+.chk{display:flex;gap:10px;align-items:flex-start;margin:20px 0 6px;font-size:15px;color:var(--hint)}
+.chk input{width:20px;height:20px;margin-top:2px;flex:none;accent-color:var(--navy)}
+.chk a,.foot a{color:var(--navy)}
+.btn{display:block;width:100%;margin-top:22px;background:var(--navy);color:#fff;border:0;border-radius:8px;padding:15px;font:inherit;font-weight:600;font-size:17px;cursor:pointer}
+.btn[disabled]{opacity:.55;cursor:wait}
+.err{color:var(--err);font-size:14px;margin-top:4px;display:none}
+.show{display:block}
+.msg{padding:14px 16px;border-radius:8px;margin-top:18px;display:none;font-size:15px}
+.msg.ok{background:#E8F1EC;color:var(--ok);display:block}.msg.bad{background:#F6E7E4;color:var(--err);display:block}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.test{background:#F5C451;color:#2C3B4C;text-align:center;font-weight:600;font-size:14px;padding:6px 10px;display:none}
+.foot{text-align:center;color:var(--hint);font-size:13px;margin-top:18px}
+.doc h2{font-size:18px;margin:22px 0 6px}.doc p,.doc li{font-size:15px;color:#3a4550}
+@media(max-width:420px){.card{padding:22px 18px}h1{font-size:23px}}

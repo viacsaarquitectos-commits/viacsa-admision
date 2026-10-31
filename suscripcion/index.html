@@ -1,0 +1,27 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="comun.css"><title>Suscripción · VIACSA Arquitectos</title><meta name="description" content="Ideas, proyectos y conocimientos sobre arquitectura, construcción y desarrollo inmobiliario."></head><body>
+<div class="test" id="test">MODO PRUEBA · los datos van a la pestaña PRUEBA y no a la lista real</div><header class="hero"><img src="logo.png" alt="VIACSA Arquitectos"></header><main class="wrap"><div class="card">
+<h1>Ideas para decidir mejor, desde el terreno hasta la obra</h1>
+<p class="lead">Recibe ideas, proyectos y conocimientos sobre arquitectura, construcción y desarrollo inmobiliario. Compartimos perspectivas que ayudan a tomar mejores decisiones desde el terreno hasta la obra.</p>
+<form id="f" novalidate>
+<label class="f" for="nombre">Nombre</label><input type="text" id="nombre" autocomplete="given-name" maxlength="80" required><div class="err" id="e-nombre">Escribe tu nombre.</div>
+<label class="f" for="correo">Correo electrónico</label><input type="email" id="correo" autocomplete="email" maxlength="254" inputmode="email" required><div class="err" id="e-correo">Escribe un correo válido.</div>
+<label class="f" for="interes">Me interesa</label><select id="interes" required><option value="">Elige una opción</option><option>Residencial</option><option>Comercial</option><option>Inversión y desarrollo inmobiliario</option></select><div class="err" id="e-interes">Elige un interés.</div>
+<div class="hp" aria-hidden="true"><label>Sitio web<input type="text" id="web" tabindex="-1" autocomplete="off"></label></div>
+<label class="chk"><input type="checkbox" id="consentimiento"><span id="txt-consent">Acepto recibir de VIACSA Arquitectos correos con ideas, proyectos y novedades sobre arquitectura y desarrollo inmobiliario. Puedo darme de baja en cualquier momento.</span></label>
+<div style="font-size:14px;color:var(--hint);margin-left:30px">He leído el <a href="aviso-privacidad.html" target="_blank" rel="noopener">aviso de privacidad</a>.</div>
+<div class="err" id="e-consentimiento">Necesitamos tu autorización para enviarte correos.</div>
+<button class="btn" id="b" type="submit">Suscribirme</button>
+<div class="msg" id="m" role="status" aria-live="polite"></div>
+</form>
+</div><p class="foot">VIACSA Arquitectos · Tijuana, B.C. · <a href="aviso-privacidad.html">Aviso de privacidad</a></p></main>
+<script src="comun.js"></script><script>
+VIACSA.banner();var t0=Date.now(),f=document.getElementById('f');
+function err(id,on){document.getElementById('e-'+id).classList.toggle('show',on);return on}
+f.addEventListener('submit',function(ev){ev.preventDefault();var m=document.getElementById('m');m.className='msg';
+ var d={accion:'registrar',nombre:nombre.value.trim(),correo:correo.value.trim(),interes:interes.value,consentimiento:consentimiento.checked===true,version:'CONS-2026-10-v1',web:web.value,t:Date.now()-t0,fuente:'Formulario web de suscripción'};
+ var bad=[err('nombre',d.nombre.length<2),err('correo',!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.correo)),err('interes',!d.interes),err('consentimiento',!d.consentimiento)].some(Boolean);
+ if(bad)return;var b=document.getElementById('b');b.disabled=true;b.textContent='Enviando…';
+ VIACSA.enviar(d).then(function(r){if(r.codigo==='REVISA_CORREO'){f.querySelectorAll('input,select').forEach(function(x){x.disabled=true});b.style.display='none';m.className='msg ok';m.textContent='Listo. Te enviamos un correo para confirmar tu suscripción. Revisa tu bandeja (y la carpeta de spam). Sin confirmación no recibirás nada.'}
+  else{b.disabled=false;b.textContent='Suscribirme';m.className='msg bad';m.textContent=r.codigo==='LIMITE'?'Hay demasiadas solicitudes en este momento. Intenta más tarde.':r.codigo==='NO_DISPONIBLE'?'La suscripción aún no está abierta.':'Revisa los datos e intenta de nuevo.'}})
+ .catch(function(){b.disabled=false;b.textContent='Suscribirme';m.className='msg bad';m.textContent='No pudimos enviar tu solicitud. Revisa tu conexión e intenta de nuevo.'})});
+</script></body></html>

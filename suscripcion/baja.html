@@ -1,0 +1,13 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="comun.css"><title>Darse de baja · VIACSA Arquitectos</title></head><body>
+<div class="test" id="test">MODO PRUEBA · los datos van a la pestaña PRUEBA y no a la lista real</div><header class="hero"><img src="logo.png" alt="VIACSA Arquitectos"></header><main class="wrap"><div class="card">
+<h1>Dejar de recibir correos</h1><p class="lead" id="p">Confirma que ya no quieres recibir correos de VIACSA Arquitectos. Tu baja se registra de inmediato.</p>
+<button class="btn" id="b">Darme de baja</button><div class="msg" id="m" role="status" aria-live="polite"></div>
+</div><p class="foot">VIACSA Arquitectos · Tijuana, B.C. · <a href="aviso-privacidad.html">Aviso de privacidad</a></p></main>
+<script src="comun.js"></script><script>
+VIACSA.banner();var q=new URLSearchParams(location.search),b=document.getElementById('b'),m=document.getElementById('m');
+var T={CANCELADO:'Listo. Ya no recibirás correos de VIACSA. Si cambias de opinión, puedes suscribirte de nuevo.',YA_CANCELADO:'Este correo ya estaba dado de baja.',INVALIDO:'El enlace no es válido.',NO_DISPONIBLE:'Servicio no disponible.'};
+if(!q.get('id')||!q.get('t')){b.style.display='none';m.className='msg bad';m.textContent='El enlace está incompleto. Ábrelo directamente desde el correo.'}
+b.onclick=function(){b.disabled=true;b.textContent='Procesando…';
+ VIACSA.enviar({accion:'baja',id:q.get('id'),t:q.get('t')}).then(function(r){var x=T[r.codigo]||T.INVALIDO;b.style.display='none';m.className='msg '+(r.ok?'ok':'bad');m.textContent=x})
+ .catch(function(){b.disabled=false;b.textContent='Darme de baja';m.className='msg bad';m.textContent='No pudimos conectar. Intenta de nuevo.'})};
+</script></body></html>

@@ -1,0 +1,13 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="comun.css"><title>Confirmar suscripción · VIACSA Arquitectos</title></head><body>
+<div class="test" id="test">MODO PRUEBA · los datos van a la pestaña PRUEBA y no a la lista real</div><header class="hero"><img src="logo.png" alt="VIACSA Arquitectos"></header><main class="wrap"><div class="card">
+<h1>Confirma tu suscripción</h1><p class="lead" id="p">Un clic más y quedas suscrito. Lo pedimos para asegurarnos de que este correo es tuyo.</p>
+<button class="btn" id="b">Confirmar mi suscripción</button><div class="msg" id="m" role="status" aria-live="polite"></div>
+</div><p class="foot">VIACSA Arquitectos · Tijuana, B.C. · <a href="aviso-privacidad.html">Aviso de privacidad</a></p></main>
+<script src="comun.js"></script><script>
+VIACSA.banner();var q=new URLSearchParams(location.search),b=document.getElementById('b'),m=document.getElementById('m');
+var T={CONFIRMADO:'Suscripción confirmada. Gracias. Puedes darte de baja cuando quieras desde cualquier correo nuestro.',YA_CONFIRMADO:'Tu suscripción ya estaba confirmada.',EXPIRADO:'El enlace venció. Vuelve a suscribirte para recibir uno nuevo.',INVALIDO:'El enlace no es válido o ya se usó.',NO_DISPONIBLE:'La suscripción aún no está abierta.'};
+if(!q.get('id')||!q.get('t')){b.style.display='none';m.className='msg bad';m.textContent='El enlace está incompleto. Ábrelo directamente desde el correo.'}
+b.onclick=function(){b.disabled=true;b.textContent='Procesando…';
+ VIACSA.enviar({accion:'confirmar',id:q.get('id'),t:q.get('t')}).then(function(r){var x=T[r.codigo]||T.INVALIDO;b.style.display='none';m.className='msg '+(r.ok?'ok':'bad');m.textContent=x})
+ .catch(function(){b.disabled=false;b.textContent='Confirmar mi suscripción';m.className='msg bad';m.textContent='No pudimos conectar. Intenta de nuevo.'})};
+</script></body></html>
